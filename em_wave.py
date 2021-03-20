@@ -57,9 +57,6 @@ ax.set_xlim3d(-amp, amp)
 ax.set_ylim3d(-100, 100)
 ax.set_zlim3d(-amp, amp)
 
-print("\n")
-print("Saving animation... This may take a while")
-ani.save("em_wave.gif",progress_callback=tqdm.tqdm(lambda i: i))
-
-
+print("Saving animation... This may take a couple minutes")
+ani.save("em_wave.gif")
 plt.show()
