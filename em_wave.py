@@ -20,14 +20,15 @@ N = len(time)
 frames = []
 dx = 20*max/(N-1)
 x = np.arange(min, max, dx)
-for i in range(N):
+print("Creating animation:\n")
+for i in tqdm.tqdm(range(N)):
     Ey = np.linspace(-100,100,1000)
     Ex = np.zeros_like(Ey)
-    Ez = 25*np.cos(k*Ey-omega*time[i])
+    Ez = amp*np.cos(k*Ey-omega*time[i])/2
 
     My = np.linspace(-100,100,1000)
     Mz = np.zeros_like(My)
-    Mx = 25*np.cos(k*My-omega*time[i])
+    Mx = amp*np.cos(k*My-omega*time[i])/2
 
     plot1, = ax.plot3D(Ex, Ey, Ez, 'red')
     plot2, = ax.plot3D(Mx, My, Mz, 'blue')
@@ -35,11 +36,11 @@ for i in range(N):
     anilist = [plot1, plot2]
 
     for xs in x:
-        z = 25*np.cos(k*xs-omega*time[i])
+        z = amp*np.cos(k*xs-omega*time[i])/2
         arrow = Arrow3D([0,0],[xs,xs],[0,z], mutation_scale=5, lw=1, arrowstyle="-|>", color="r")
         plotarrow = ax.add_artist(arrow)
         anilist.append(plotarrow)
-        Y = 25*np.cos(k*xs-omega*time[i])
+        Y = amp*np.cos(k*xs-omega*time[i])/2
         arrow = Arrow3D([0,Y],[xs,xs],[0,0], mutation_scale=5, lw=1, arrowstyle="-|>", color="b")
         plotarrow = ax.add_artist(arrow)
         anilist.append(plotarrow)
@@ -47,7 +48,7 @@ for i in range(N):
     frames.append(anilist)
 
 
-a = Arrow3D([0,0],[-100,130],[0,0], mutation_scale=20, lw=1, arrowstyle="-|>", color="k")
+a = Arrow3D([0,0],[-max,max*1.3],[0,0], mutation_scale=20, lw=1, arrowstyle="-|>", color="k")
 ax.add_artist(a)
 ani = animation.ArtistAnimation(fig, frames, interval=10, blit=True, repeat_delay=0)
 
@@ -55,5 +56,10 @@ ani = animation.ArtistAnimation(fig, frames, interval=10, blit=True, repeat_dela
 ax.set_xlim3d(-amp, amp)
 ax.set_ylim3d(-100, 100)
 ax.set_zlim3d(-amp, amp)
+
+print("\n")
+print("Saving animation... This may take a while")
+ani.save("em_wave.gif",progress_callback=tqdm.tqdm(lambda i: i))
+
 
 plt.show()
