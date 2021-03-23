@@ -24,7 +24,7 @@
  amp = 100 #(scaled) amplitude of the waves
  ```
  and let the script to the rest
- ##Execution
+ ## Execution
  The python script em_wave.py has to be executed in the main directory like
  ```bash
  python -m em_wave
