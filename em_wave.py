@@ -20,7 +20,8 @@ N = len(time)
 frames = []
 dx = 20*max/(N-1)
 x = np.arange(min, max, dx)
-print("Creating animation:\n")
+
+print("Creating animation...\n")
 for i in tqdm.tqdm(range(N)):
     Ey = np.linspace(-100,100,1000)
     Ex = np.zeros_like(Ey)
@@ -50,35 +51,13 @@ for i in tqdm.tqdm(range(N)):
 
 a = Arrow3D([0,0],[-max,max*1.3],[0,0], mutation_scale=20, lw=1, arrowstyle="-|>", color="k")
 ax.add_artist(a)
-ani = animation.ArtistAnimation(fig, frames, interval=10, blit=True, repeat_delay=0)
-
-y = [-270, -170, -170, -270]
-x = [-30, -30, 30, 30]
-z = [-30, -30, -30, -30]
-vertices =[list(zip(x,y,z))]
-ax.add_collection3d(art3d.Poly3DCollection(vertices, facecolors='y', linewidths=1, alpha=1))
-
-y = [-270, -170, -170, -270]
-x = [-30, -30, 30, 30]
-z = [30, 30, 30, 30]
-vertices =[list(zip(x,y,z))]
-ax.add_collection3d(art3d.Poly3DCollection(vertices, facecolors='y', linewidths=1, alpha=1))
-
-y = [-170, -170, -170, -170]
-x = [-30, -30, 30, 30]
-z = [30, -30, -30, 30]
-vertices =[list(zip(x,y,z))]
-ax.add_collection3d(art3d.Poly3DCollection(vertices, facecolors='y', linewidths=1, alpha=1))
-
-y = [-270, -270, -270, -270]
-x = [-30, -30, 30, 30]
-z = [30, -30, -30, 30]
-vertices =[list(zip(x,y,z))]
-ax.add_collection3d(art3d.Poly3DCollection(vertices, facecolors='y', linewidths=1, alpha=1))
 
 ax.set_xlim3d(-amp, amp)
 ax.set_ylim3d(-100, 100)
 ax.set_zlim3d(-amp, amp)
+
+
+ani = animation.ArtistAnimation(fig, frames, interval=10, blit=True, repeat_delay=0)
 
 #print("Saving animation... This may take a couple minutes")
 #start = time.time()
