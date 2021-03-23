@@ -29,7 +29,7 @@ T = 2*np.pi / omega
 min = -max
 
 #plotting and animation
-fig = plt.figure()
+fig = plt.figure(figsize=(12, 10))
 ax = plt.axes(projection='3d')
 ax._axis3don = False #no coordinate system
 ax.view_init(30, 30) #perspective
