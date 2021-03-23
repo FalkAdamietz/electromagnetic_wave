@@ -1,5 +1,13 @@
+"""
+    Class to create a 3D arrow. Code taken from
+    https://stackoverflow.com/questions/22867620/putting-arrowheads-on-vectors-in-matplotlibs-3d-plot
+"""
+
+
+#imports
 from lib.imports import *
 
+#class
 class Arrow3D(FancyArrowPatch):
     def __init__(self, xs, ys, zs, *args, **kwargs):
         FancyArrowPatch.__init__(self, (0,0), (0,0), *args, **kwargs)
