@@ -1,5 +1,5 @@
 # electromagnetic_wave
- Simulation of a electromagnetic wave.
+ Simulation of an electromagnetic wave.
  ![Example animation](https://github.com/Bra-A-Ket/electromagnetic_wave/blob/main/em_wave.gif)
  ## Required packages
  1. Numpy:
